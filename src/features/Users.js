@@ -12,7 +12,12 @@ export const userSlice = createSlice({
                 state.value = state.value.filter(user => user.id !== action.payload.id);
             },
             updateUser: (state, action) => {
-                // update user
+                state.value = state.value.map(user => {
+                    if (user.id === action.payload.id) {
+                        user.username = action.payload.username;
+                    }
+                    return user;
+                });
             }   
         }
 });
